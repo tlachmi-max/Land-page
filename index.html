@@ -16,9 +16,12 @@
     --lime-soft:#C7EE8B;
     --cream:#F7F3E8;
     --cream-2:#EFE9D8;
-    --ink:#132318;
-    --ink-soft:#3B4B40;
-    --line: rgba(163,230,75,0.28);
+    --white:#FFFFFF;
+    --ink:#16261C;
+    --ink-soft:#4A5A4E;
+    --ink-mute:#6C7A6F;
+    --line-dark: rgba(163,230,75,0.28);
+    --line-light: rgba(12,61,34,0.14);
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -44,10 +47,12 @@
   section{position:relative;}
   ::selection{background:var(--lime); color:var(--green-deep);}
 
-  /* focus visibility */
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
-    outline:3px solid var(--lime);
+    outline:3px solid var(--green-deep);
     outline-offset:3px;
+  }
+  .hero a:focus-visible, .nav a:focus-visible, .step-num:focus-visible{
+    outline:3px solid var(--lime);
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -57,67 +62,72 @@
   /* ---------- NAV ---------- */
   .nav{
     position:fixed; top:0; right:0; left:0; z-index:50;
-    background:rgba(12,61,34,0.94);
+    background:rgba(10,51,29,0.96);
     backdrop-filter:blur(6px);
     border-bottom:1px solid rgba(163,230,75,0.15);
   }
   .nav-inner{
-    max-width:1080px; margin:0 auto; padding:14px 24px;
+    max-width:1080px; margin:0 auto; padding:13px 24px;
     display:flex; align-items:center; justify-content:space-between;
+    gap:16px;
   }
   .nav-brand{
     display:flex; align-items:center; gap:10px;
     font-family:'Frank Ruhl Libre', serif;
-    font-size:20px; font-weight:700; color:var(--cream);
+    font-size:19px; font-weight:700; color:var(--cream);
   }
-  .nav-brand img{height:30px; width:auto;}
+  .nav-brand img{height:28px; width:auto;}
   .nav-cta{
     background:var(--lime); color:var(--green-deep);
     font-weight:700; font-size:14px;
-    padding:9px 18px; border-radius:100px;
+    padding:10px 20px; border-radius:100px;
     white-space:nowrap;
+    transition:background .25s ease, transform .2s ease;
   }
+  .nav-cta:hover{background:var(--lime-soft); transform:translateY(-1px);}
 
   /* ---------- HERO ---------- */
   .hero{
     background:
-      radial-gradient(ellipse 700px 500px at 25% -10%, rgba(163,230,75,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 25% -10%, rgba(163,230,75,0.14), transparent 60%),
       linear-gradient(180deg, var(--green-deep) 0%, var(--green-deep-2) 100%);
     color:var(--cream);
-    padding:128px 0 90px;
+    padding:132px 0 88px;
     text-align:center;
     overflow:hidden;
   }
   .hero-logo{
-    width:112px; height:112px; margin:0 auto 28px;
+    width:104px; height:104px; margin:0 auto 26px;
     animation: fadeUp 0.9s ease both;
   }
   .hero .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
-    font-size:13px; letter-spacing:0.08em;
-    color:var(--lime-soft); font-weight:600;
-    border:1px solid var(--line); border-radius:100px;
-    padding:6px 16px; margin-bottom:22px;
+    font-size:13px; letter-spacing:0.06em;
+    color:var(--green-deep); font-weight:700;
+    background:var(--lime);
+    border-radius:100px;
+    padding:7px 16px; margin-bottom:24px;
     animation: fadeUp 0.9s ease 0.05s both;
   }
   .hero h1{
-    font-size:clamp(28px, 6vw, 46px);
-    line-height:1.28;
+    font-size:clamp(27px, 5.6vw, 44px);
+    line-height:1.32;
     font-weight:700;
-    max-width:820px;
+    max-width:780px;
     margin:0 auto 22px;
     animation: fadeUp 0.9s ease 0.12s both;
+    color:var(--white);
   }
   .hero h1 em{
     font-style:normal;
-    color:var(--lime);
+    color:var(--lime-soft);
   }
   .hero p{
-    font-size:clamp(16px, 2.4vw, 19px);
-    line-height:1.7;
-    color:rgba(247,243,232,0.8);
+    font-size:clamp(16px, 2.2vw, 18px);
+    line-height:1.75;
+    color:rgba(247,243,232,0.86);
     max-width:560px;
-    margin:0 auto 38px;
+    margin:0 auto 36px;
     animation: fadeUp 0.9s ease 0.18s both;
   }
   .btn-primary{
@@ -125,14 +135,14 @@
     background:var(--lime); color:var(--green-deep);
     font-weight:700; font-size:17px;
     padding:16px 34px; border-radius:100px;
-    box-shadow:0 12px 30px -10px rgba(163,230,75,0.45);
+    box-shadow:0 12px 30px -10px rgba(0,0,0,0.35);
     transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
     animation: fadeUp 0.9s ease 0.24s both;
     border:none; cursor:pointer;
   }
   .btn-primary:hover{
     transform:translateY(-3px);
-    box-shadow:0 16px 34px -8px rgba(163,230,75,0.6);
+    box-shadow:0 16px 34px -8px rgba(0,0,0,0.4);
     background:var(--lime-soft);
   }
   .btn-primary svg{transition:transform .25s ease;}
@@ -143,48 +153,44 @@
     to{opacity:1; transform:translateY(0);}
   }
 
-  /* rising line signature motif behind hero */
   .hero-graph{
-    position:absolute; inset:0; z-index:0; opacity:0.5;
+    position:absolute; inset:0; z-index:0; opacity:0.45;
     pointer-events:none;
   }
   .hero > .container{position:relative; z-index:1;}
 
-  /* section dividers - rising line echoing the logo mark */
-  .divider{
-    height:64px;
-    display:flex; align-items:center; justify-content:center;
-  }
-
   /* ---------- SECTION LABELS ---------- */
-  .section-pad{padding:88px 0;}
+  .section-pad{padding:84px 0;}
   .kicker{
-    font-size:13px; font-weight:700; letter-spacing:0.1em;
-    color:#5A7A5F;
+    font-size:13px; font-weight:700; letter-spacing:0.08em;
+    color:var(--green-deep);
     margin-bottom:12px;
+    display:inline-block;
+    background:rgba(12,61,34,0.08);
+    padding:5px 13px; border-radius:100px;
   }
   .section-title{
-    font-size:clamp(24px, 4.2vw, 34px);
+    font-size:clamp(24px, 4vw, 33px);
     font-weight:700; line-height:1.32;
     margin-bottom:16px;
     color:var(--green-deep);
   }
   .section-sub{
-    font-size:17px; line-height:1.75;
+    font-size:16.5px; line-height:1.75;
     color:var(--ink-soft);
     max-width:620px;
   }
   .center{text-align:center; margin-left:auto; margin-right:auto;}
 
-  /* ---------- PAIN POINTS ---------- */
+  /* ---------- PAIN / FRICTION ---------- */
   .pain{background:var(--cream);}
   .pain-head{margin-bottom:52px;}
   .pain-grid{
     display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
   }
   .pain-card{
-    background:#fff;
-    border:1px solid rgba(12,61,34,0.08);
+    background:var(--white);
+    border:1px solid var(--line-light);
     border-radius:20px;
     padding:32px 26px;
     box-shadow:0 1px 2px rgba(12,61,34,0.04);
@@ -192,7 +198,7 @@
   }
   .pain-card:hover{
     transform:translateY(-6px);
-    box-shadow:0 20px 40px -18px rgba(12,61,34,0.25);
+    box-shadow:0 20px 40px -18px rgba(12,61,34,0.18);
   }
   .pain-mark{
     width:44px; height:44px; border-radius:12px;
@@ -212,10 +218,42 @@
     color:var(--ink-soft);
   }
 
+  /* ---------- WHO IT'S FOR ---------- */
+  .fit{
+    background:var(--cream-2);
+    padding:84px 0;
+  }
+  .fit-wrap{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:48px; align-items:center;
+  }
+  .fit-text .section-title{margin-bottom:14px;}
+  .fit-list{
+    list-style:none;
+    background:var(--white);
+    border:1px solid var(--line-light);
+    border-radius:20px;
+    padding:8px;
+  }
+  .fit-list li{
+    display:flex; align-items:flex-start; gap:14px;
+    padding:18px 16px;
+    border-bottom:1px solid var(--line-light);
+    font-size:15.5px; line-height:1.6;
+    color:var(--ink);
+  }
+  .fit-list li:last-child{border-bottom:none;}
+  .fit-check{
+    flex:none; width:28px; height:28px; border-radius:50%;
+    background:var(--green-deep);
+    display:flex; align-items:center; justify-content:center;
+    margin-top:1px;
+  }
+  .fit-check svg{width:14px; height:14px; stroke:var(--lime);}
+
   /* ---------- SOLUTION ---------- */
   .solution{
-    background:var(--cream-2);
-    padding:96px 0;
+    background:var(--cream);
+    padding:88px 0;
   }
   .solution-wrap{
     display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
@@ -237,20 +275,16 @@
   }
   .value-chip{
     font-size:13px; font-weight:600; color:var(--green-deep);
-    background:rgba(163,230,75,0.28);
+    background:rgba(163,230,75,0.32);
     border-radius:100px; padding:7px 14px;
   }
 
   /* ---------- PROCESS ---------- */
   .process{
-    background:linear-gradient(180deg, var(--green-deep-2), var(--green-deep));
-    color:var(--cream);
-    padding:100px 0 110px;
+    background:var(--cream-2);
+    padding:88px 0 96px;
   }
-  .process-head{margin-bottom:60px;}
-  .process-head .kicker{color:var(--lime-soft);}
-  .process-head .section-title{color:#fff;}
-  .process-head .section-sub{color:rgba(247,243,232,0.72);}
+  .process-head{margin-bottom:52px;}
 
   .steps{
     position:relative;
@@ -260,84 +294,68 @@
     content:"";
     position:absolute; top:8px; bottom:8px; right:27px;
     width:2px;
-    background:repeating-linear-gradient(to bottom, var(--line) 0 6px, transparent 6px 12px);
+    background:repeating-linear-gradient(to bottom, var(--line-light) 0 6px, transparent 6px 12px);
   }
   .step{
     position:relative;
     display:grid; grid-template-columns:56px 1fr; gap:22px;
-    padding:26px 0;
+    padding:20px 18px;
+    border-radius:16px;
+    transition:background .3s ease;
   }
+  .step:hover{background:var(--white);}
   .step-num{
     width:56px; height:56px; border-radius:50%;
-    background:var(--green-panel);
-    border:1.5px solid var(--line);
+    background:var(--green-deep);
+    border:1.5px solid var(--green-deep);
     color:var(--lime);
     font-family:'Frank Ruhl Libre', serif; font-weight:700; font-size:19px;
     display:flex; align-items:center; justify-content:center;
     z-index:1;
-    transition:background .3s ease, transform .3s ease;
+    transition:transform .3s ease;
   }
   .step:hover .step-num{
-    background:var(--lime); color:var(--green-deep);
     transform:scale(1.06);
   }
   .step-body h3{
     font-family:'Assistant', sans-serif;
-    font-size:18px; font-weight:700; color:#fff;
+    font-size:18px; font-weight:700; color:var(--green-deep);
     margin-bottom:6px;
   }
   .step-body p{
     font-size:15px; line-height:1.7;
-    color:rgba(247,243,232,0.68);
+    color:var(--ink-soft);
     max-width:520px;
   }
 
   /* ---------- FORM ---------- */
   .lead{
     background:var(--cream);
-    padding:100px 0;
+    padding:92px 0 100px;
+  }
+  .lead-head{
+    text-align:center; max-width:560px; margin:0 auto 40px;
   }
   .lead-panel{
     background:var(--green-deep);
-    border-radius:28px;
-    padding:56px 44px;
-    display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px;
+    border-radius:26px;
+    padding:44px;
+    max-width:560px;
+    margin:0 auto;
     position:relative; overflow:hidden;
   }
   .lead-panel::before{
     content:"";
-    position:absolute; width:340px; height:340px;
-    background:radial-gradient(circle, rgba(163,230,75,0.22), transparent 70%);
-    top:-120px; left:-100px;
+    position:absolute; width:300px; height:300px;
+    background:radial-gradient(circle, rgba(163,230,75,0.18), transparent 70%);
+    top:-110px; left:-90px;
+    pointer-events:none;
   }
-  .lead-info{position:relative; z-index:1;}
-  .lead-info .kicker{color:var(--lime-soft);}
-  .lead-info h2{
-    color:#fff; font-size:clamp(22px, 3.4vw, 30px);
-    line-height:1.35; margin-bottom:16px;
-  }
-  .lead-info p{
-    color:rgba(247,243,232,0.72);
-    font-size:15px; line-height:1.75;
-    margin-bottom:26px;
-  }
-  .lead-points{list-style:none; display:flex; flex-direction:column; gap:12px;}
-  .lead-points li{
-    display:flex; align-items:flex-start; gap:10px;
-    font-size:14px; color:rgba(247,243,232,0.85);
-  }
-  .lead-points svg{flex:none; width:18px; height:18px; stroke:var(--lime); margin-top:1px;}
-
-  .lead-form{
-    position:relative; z-index:1;
-    background:var(--cream);
-    border-radius:18px;
-    padding:30px;
-  }
+  .lead-form{position:relative; z-index:1;}
   .field{margin-bottom:16px;}
   .field label{
     display:block; font-size:13px; font-weight:700;
-    color:var(--green-deep); margin-bottom:6px;
+    color:var(--lime-soft); margin-bottom:7px;
   }
   .field input, .field select{
     width:100%;
@@ -345,12 +363,13 @@
     font-size:15px;
     padding:12px 14px;
     border-radius:10px;
-    border:1.5px solid rgba(12,61,34,0.15);
-    background:#fff;
+    border:1.5px solid rgba(247,243,232,0.18);
+    background:rgba(247,243,232,0.96);
     color:var(--ink);
   }
+  .field input::placeholder{color:var(--ink-mute);}
   .field input:focus, .field select:focus{
-    border-color:var(--green-deep);
+    border-color:var(--lime);
   }
   .field select{appearance:none; cursor:pointer;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230C3D22' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");
@@ -361,16 +380,17 @@
     background:var(--lime); color:var(--green-deep);
     font-weight:700; font-size:16px;
     border:none; border-radius:10px;
-    padding:14px; margin-top:6px; cursor:pointer;
+    padding:15px; margin-top:6px; cursor:pointer;
     transition:background .25s ease, transform .2s ease;
   }
   .btn-submit:hover{background:var(--lime-soft); transform:translateY(-2px);}
   .form-note{
-    font-size:12.5px; color:var(--ink-soft); margin-top:12px; text-align:center;
+    font-size:12.5px; color:rgba(247,243,232,0.6); margin-top:14px; text-align:center;
   }
   .form-success{
     display:none;
-    text-align:center; padding:28px 10px;
+    text-align:center; padding:20px 6px;
+    position:relative; z-index:1;
   }
   .form-success.show{display:block;}
   .form-success .check{
@@ -378,8 +398,8 @@
     background:var(--lime); display:flex; align-items:center; justify-content:center;
     margin:0 auto 16px;
   }
-  .form-success h3{color:var(--green-deep); font-family:'Frank Ruhl Libre', serif; font-size:20px; margin-bottom:8px;}
-  .form-success p{color:var(--ink-soft); font-size:14px;}
+  .form-success h3{color:var(--white); font-family:'Frank Ruhl Libre', serif; font-size:20px; margin-bottom:8px;}
+  .form-success p{color:rgba(247,243,232,0.75); font-size:14px;}
 
   /* ---------- FOOTER ---------- */
   footer{
@@ -397,19 +417,19 @@
   /* ---------- RESPONSIVE ---------- */
   @media (max-width:860px){
     .pain-grid{grid-template-columns:1fr;}
+    .fit-wrap{grid-template-columns:1fr;}
     .solution-wrap{grid-template-columns:1fr;}
-    .lead-panel{grid-template-columns:1fr; padding:34px 22px;}
-    .lead-info{text-align:center;}
-    .lead-points{align-items:center;}
-    .lead-points li{text-align:right;}
   }
   @media (max-width:560px){
-    .nav-brand span.full{display:none;}
-    .hero{padding:108px 0 70px;}
-    .section-pad{padding:64px 0;}
-    .solution{padding:64px 0;}
-    .process{padding:70px 0 80px;}
-    .lead{padding:70px 0;}
+    .nav-cta{padding:9px 15px; font-size:13px;}
+    .hero{padding:104px 0 68px;}
+    .section-pad{padding:60px 0;}
+    .fit{padding:60px 0;}
+    .solution{padding:60px 0;}
+    .process{padding:64px 0 72px;}
+    .lead{padding:64px 0 76px;}
+    .lead-panel{padding:30px 20px;}
+    .step{padding:16px 10px;}
   }
 </style>
 </head>
@@ -421,7 +441,7 @@
       <img src="logo.png" alt="בנחת">
       <span class="full">בנחת</span>
     </div>
-    <a href="#lead" class="nav-cta">תיאום שיחה</a>
+    <a href="#lead" class="nav-cta">לתיאום שיחת היכרות</a>
   </div>
 </nav>
 
@@ -429,15 +449,15 @@
 <header class="hero">
   <svg class="hero-graph" viewBox="0 0 1080 420" preserveAspectRatio="none" aria-hidden="true">
     <polyline points="0,340 180,300 360,330 540,220 720,260 900,120 1080,150"
-      fill="none" stroke="rgba(163,230,75,0.35)" stroke-width="2"/>
+      fill="none" stroke="rgba(163,230,75,0.3)" stroke-width="2"/>
     <polyline points="0,390 180,370 360,385 540,330 720,350 900,270 1080,290"
-      fill="none" stroke="rgba(163,230,75,0.16)" stroke-width="2"/>
+      fill="none" stroke="rgba(163,230,75,0.14)" stroke-width="2"/>
   </svg>
   <div class="container">
     <img class="hero-logo" src="logo.png" alt="בנחת — לוגו">
     <div class="eyebrow">תוכנית ליווי זוגית לצמיחה כלכלית</div>
-    <h1>מרוויחים יפה — אבל הדיבור על כסף עדיין <em>מכניס מתח</em> לבית?</h1>
-    <p>בנחת היא תוכנית ליווי לזוגות שרוצים להפוך את הכסף משדה קרב לשפה משותפת — כלי אחד שמקדם את שניכם לעבר החיים שאתם באמת רוצים.</p>
+    <h1>כשהערכים שלכם כזוג הופכים ל<em>מספרים ברורים</em> — הכסף מפסיק להפריד ומתחיל לקרב</h1>
+    <p>בנחת היא תוכנית ליווי לזוגות שרוצים להפוך תקציב ומספרים לשפה משותפת — כלי שמקדם את שניכם, בבהירות ובשקט נפשי, לעבר החיים שאתם באמת רוצים.</p>
     <a href="#lead" class="btn-primary">
       לתיאום שיחת היכרות בנחת
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></svg>
@@ -450,32 +470,61 @@
   <div class="container">
     <div class="pain-head center" style="max-width:600px;">
       <div class="kicker">מוכר לכם?</div>
-      <h2 class="section-title">כסף לא אמור להיות הנושא שאתם נמנעים ממנו</h2>
-      <p class="section-sub center">שלוש תחושות שחוזרות אצל כמעט כל זוג שמגיע אלינו — לפני שהן הופכות לשפה משותפת.</p>
+      <h2 class="section-title">שלושה חיכוכים שהופכים לשפה משותפת</h2>
+      <p class="section-sub center">אלה התחושות שרוב הזוגות מזהים אצלנו בפגישה הראשונה — לפני שהן מתחלפות בבהירות ובשותפות.</p>
     </div>
     <div class="pain-grid">
       <div class="pain-card">
         <div class="pain-mark">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
         </div>
-        <h3>מתח סביב המחר</h3>
-        <p>שאלות שלא נענות — פנסיה, משכנתא, לימודי הילדים — נשארות תלויות באוויר, ומייצרות דאגה שקטה שמלווה את שניכם.</p>
+        <h3>שאלות פתוחות על המחר</h3>
+        <p>פנסיה, משכנתא, לימודי הילדים — נושאים שקל לדחות. עם תוכנית סדורה, השאלות האלה הופכות מדאגה שקטה לתשובות ברורות.</p>
       </div>
       <div class="pain-card">
         <div class="pain-mark">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><circle cx="19" cy="7" r="3"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
         </div>
-        <h3>שני קולות שונים בבית</h3>
-        <p>אחד חוסך, השני חי את הרגע. אחד רוצה תוכנית, השני נמנע ממנה. ההבדל בגישה הופך לוויכוח במקום ליתרון משלים.</p>
+        <h3>שתי גישות שונות לכסף</h3>
+        <p>אחד חוסך, השני חי את הרגע. כשלומדים לדבר על ההבדל הזה בכלים נכונים, הוא הופך ליתרון משלים במקום לנקודת חיכוך.</p>
       </div>
       <div class="pain-card">
         <div class="pain-mark">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3>חוסר שותפות אמיתית</h3>
-        <p>אחד "מנהל" את הכסף, השני מרגיש בחוץ. גם כשההכנסה משותפת — ההחלטות ותחושת האחריות לא תמיד מחולקות באמת.</p>
+        <h3>שותפות שעוד לא הושלמה</h3>
+        <p>גם כשההכנסה משותפת, לרוב אחד "מנהל" והשני מרגיש בחוץ. המטרה היא ששניכם תרגישו שותפים מלאים בהחלטות.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="fit" id="fit">
+  <div class="container fit-wrap">
+    <div class="fit-text">
+      <div class="kicker">למי זה מתאים</div>
+      <h2 class="section-title">התוכנית בנויה עבור זוגות כמוכם</h2>
+      <p class="section-sub">בנחת אינה תוכנית חירום לזוגות במשבר — היא תהליך לזוגות שרוצים לעשות סדר, לתכנן קדימה ולהתקדם יחד, מתוך בהירות ולא מתוך לחץ.</p>
+    </div>
+    <ul class="fit-list">
+      <li>
+        <span class="fit-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        זוגות שמרוויחים יפה, אך מרגישים שאין סדר או תמונה כוללת של המצב הכלכלי
+      </li>
+      <li>
+        <span class="fit-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        זוגות שרוצים לבנות יחד תוכנית עבודה משותפת לעתיד — במקום להתמודד עם כל החלטה בנפרד
+      </li>
+      <li>
+        <span class="fit-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        זוגות שעומדים לפני צעד משמעותי — דירה, ילד, שינוי קריירה — ורוצים לקבל אותו יחד ובבהירות
+      </li>
+      <li>
+        <span class="fit-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        זוגות שרוצים ללמוד לדבר על כסף כשותפים, בלי שהשיחה תהפוך לוויכוח
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -487,7 +536,7 @@
     </div>
     <div class="solution-body">
       <p>בתוכנית בנחת אנחנו לא מתחילים בגיליון אקסל. אנחנו מתחילים בשיחה על הערכים שמניעים כל אחד מכם — ורק אז בונים יחד את התשתית הכלכלית שמשרתת אותם.</p>
-      <p>כשהכסף מדבר בשפה של ערכים משותפים, הוא מפסיק להיות מקור למתח, והופך לכלי שמקרב במקום להרחיק.</p>
+      <p>כשהמספרים מדברים בשפה של ערכים משותפים, הם מפסיקים להיות מקור למתח, והופכים לכלי שמקרב ומניע אתכם קדימה, בנחת.</p>
       <div class="value-row">
         <span class="value-chip">שקיפות</span>
         <span class="value-chip">שותפות אמיתית</span>
@@ -504,7 +553,7 @@
     <div class="process-head" style="max-width:600px;">
       <div class="kicker">איך זה עובד</div>
       <h2 class="section-title">מפת הדרך — שישה שלבים בנחת</h2>
-      <p class="section-sub">תהליך מובנה שמתקדם צעד־צעד, מהיכרות ראשונית ועד למנגנון פיננסי שפועל בעצמו.</p>
+      <p class="section-sub">תהליך מובנה שמתקדם צעד־צעד, מהיכרות ראשונית ועד למנגנון פיננסי שממשיך לפעול בעצמו.</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -556,27 +605,13 @@
 <!-- LEAD FORM -->
 <section class="lead" id="lead">
   <div class="container">
-    <div class="lead-panel">
-      <div class="lead-info">
-        <div class="kicker">הצעד הראשון</div>
-        <h2>שיחת ההיכרות היא ללא עלות וללא התחייבות</h2>
-        <p>נבין יחד את התמונה שלכם כזוג, ונבדוק אם התהליך של בנחת מתאים לכם — בשיחה קצרה, כנה ובנחת.</p>
-        <ul class="lead-points">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            שיחת אבחון של 30 דקות
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            ליווי אישי ומותאם לזוג שלכם
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            בלי מכירה — רק הקשבה
-          </li>
-        </ul>
-      </div>
+    <div class="lead-head">
+      <div class="kicker">הצעד הראשון</div>
+      <h2 class="section-title">שיחת ההיכרות — ללא עלות וללא התחייבות</h2>
+      <p class="section-sub center">נבין יחד את התמונה שלכם כזוג, ונבדוק אם התהליך של בנחת מתאים לכם. שיחה קצרה, כנה ובנחת.</p>
+    </div>
 
+    <div class="lead-panel">
       <form class="lead-form" id="leadForm">
         <div id="formFields">
           <div class="field">
