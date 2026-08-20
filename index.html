@@ -72,22 +72,25 @@
     gap:16px;
   }
   .nav-brand{
-    display:flex; align-items:center; gap:9px;
+    display:flex; align-items:center; gap:6px;
     font-family:'Frank Ruhl Libre', serif;
-    font-size:19px; font-weight:700; color:var(--green-deep);
+    font-size:20px; font-weight:800; color:var(--green-deep);
+    line-height:1;
   }
-  .nav-brand img{height:26px; width:auto;}
+  .nav-brand img{height:36px; width:auto; display:block;}
   .nav-cta{
-    background:var(--green-deep); color:var(--lime-soft);
-    font-weight:700; font-size:14px;
-    padding:10px 22px; border-radius:100px;
-    white-space:nowrap;
+    background:var(--green-deep); color:#fff;
+    font-weight:600; font-size:13.5px;
+    padding:6px 14px; border-radius:100px;
+    white-space:nowrap; line-height:1.4;
     transition:background .25s ease, transform .2s ease;
   }
   .nav-cta:hover{background:var(--green-deep-2); transform:translateY(-1px);}
 
   @media (max-width:560px){
-    .nav-cta{padding:9px 16px; font-size:13px;}
+    .nav-brand img{height:30px;}
+    .nav-brand{font-size:18px;}
+    .nav-cta{padding:6px 12px; font-size:12.5px;}
   }
 
   /* ---------- HERO ---------- */
